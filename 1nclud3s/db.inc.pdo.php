@@ -138,30 +138,30 @@ $db = New DB("mysql:host={$config["db"]["host"]};dbname={$config["db"]["db_nombr
 
 $categorias = $db->query("SELECT nombre,id_categoria FROM noticias_categorias");
 
-$subcategorias = $db->query("SELECT nombre,id_categoria,id_subcategoria FROM noticias_subcategorias");
 
+$subcategorias = $db->query("SELECT nombre,id_categoria,id_subcategoria FROM noticias_subcategorias");
 
 $arrayCategorias = array();
 $arraySubcategorias = array();
 
-foreach($categorias as $key => $value ): 
+foreach($categorias as $key => $value ){ 
 	$arrayCategorias[$key]["nombre"]   = $categorias[$key]["nombre"];
 	$arrayCategorias[$key]["id_categoria"]       = $categorias[$key]["id_categoria"];
 	$arrayCategorias[$key]["tieneSubcategoria"] = 0;
 	unset($arraySubcategorias);
-	foreach($subcategorias as $key2 => $value):
+	foreach($subcategorias as $key2 => $value){
 		if( $subcategorias[$key2]["id_categoria"] == $categorias[$key]["id_categoria"]):
 			$arrayCategorias[$key]["tieneSubcategoria"] = 1;
 			$arraySubcategorias[$key2]["nombre"] = $subcategorias[$key2]["nombre"];
 			$arraySubcategorias[$key2]["id_subcategoria"]     = $subcategorias[$key2]["id_subcategoria"];
 		endif;
-	endforeach;
+	}
 	if( $arrayCategorias[$key]["tieneSubcategoria"] == 1):
 		$arrayCategorias[$key]["Subcategoria"] = $arraySubcategorias;
 	endif;
-endforeach;
+}
 			
-	
+echo print_r($arrayCategorias);	
 
 ?>
 
