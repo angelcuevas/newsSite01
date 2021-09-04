@@ -1,3 +1,8 @@
+<?php
+    include("./1nclud3s/Config_y_funciones.php");
+?>
+
+
 <!doctype html>
 <html class="no-js" lang="zxx">
     
