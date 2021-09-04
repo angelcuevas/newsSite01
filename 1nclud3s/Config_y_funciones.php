@@ -2,7 +2,7 @@
 
 $config["db"]["usuario"]    = "joker";//prechi_db
 $config["db"]["pass"]       = "whysoserious";//twm2GJC_aoX8
-$config["db"]["host"]       = "localhost";
+$config["db"]["host"]       = "angelcuevas.ddns.net";
 $config["db"]["db_nombre"]  = "prechi_db";
 
 include_once("db.inc.pdo.php");
