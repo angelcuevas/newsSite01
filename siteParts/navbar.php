@@ -55,7 +55,7 @@
                                 <div class="main-menu d-none d-md-block">
                                     <nav>                  
                                         <ul id="navigation">    
-                                            <li><a href="index.html">Inicio</a></li>
+                                            <li><a href="index.php">Inicio</a></li>
                                             <?php 
                                                 foreach($categorias as $categoria){
                                                     ?>                                                    
