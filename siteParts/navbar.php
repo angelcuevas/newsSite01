@@ -1,7 +1,6 @@
 <?php 
     $categorias = $db->query("SELECT id_categoria, nombre, ubicacion FROM noticias_categorias");
 
-
     // $zip = 43101;
     // $codigoPais = "ar";
     // $apiKey = "5cb0bccef32d99b26506d2b0f48cb22e";
@@ -88,7 +87,7 @@
                                             <?php 
                                                 foreach($categorias as $categoria){
                                                     ?>                                                    
-                                                        <li> <a href=""><?php echo $categoria[nombre];?></a></li>                                                  
+                                                        <li> <a href="categoria.php?id=<?php echo $categoria["id_categoria"]; ?>"><?php echo $categoria["nombre"];?></a></li>                                                  
                                                     <?php                                                   
                                                 }                                                
                                             ?>

@@ -25,12 +25,13 @@ class Comentario{
     }
 
     public function alta($nombre,$texto){
-        
+
         if( !empty($_POST['nombre']) AND !empty($_POST['texto'])):
+            
+            $parametroConsulta = array("id_noticia" => $this->id_noticia , "nombre" => $nombre,"texto" => $texto );
         
-            $parametroConsulta = array("id_noticia" => $this->id_noticia , ":nombre" => $nombre,":texto" => $texto );
-        
-            $this->db->exec("INSERT INTO noticias_comentarios(id_noticia,id_miembro,fecha,texto,habilitado,revisado) VALUES(:id_noticia,:nombre,NOW(),:texto,1,0)",$parametroConsulta);
+            //$this->db->exec("INSERT INTO noticias_comentarios(id_noticia,id_miembro,fecha,texto,habilitado,revisado) VALUES(:id_noticia,:nombre,NOW(),:texto,1,0)",$parametroConsulta);
+            $this->db->exec("INSERT INTO noticias_comentarios(id_noticia,id_miembro,fecha,texto,habilitado,revisado) VALUES(".$this->id_noticia.",'".$nombre."',NOW(),'".$texto."',1,0)");
     
             $this->tipoDeMensaje = "exito";
         
