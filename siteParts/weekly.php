@@ -28,7 +28,7 @@
                                 </div>
                                 <div class="weekly-caption">
                                     <span class="color1"><?php echo $noticia["nombre"]; ?></span>
-                                    <h4><a href="#"> <?php echo $noticia["titulo"];?> </a></h4>
+                                    <h4><a href="noticia.php?id=<?php showNoticiaId($noticia)?>"> <?php echo $noticia["titulo"];?> </a></h4>
                                 </div>
                             </div> 
                             <?php

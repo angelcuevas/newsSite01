@@ -16,4 +16,10 @@
     function showNoticiaId($noticia){
         echo $noticia["id_noticia"];
     }
+
+    function mostrarSoloFecha($fecha){
+        $partes = explode(' ', $fecha);
+
+        return $partes[0];
+    }
 ?>
