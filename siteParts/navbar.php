@@ -1,7 +1,36 @@
 <?php 
     $categorias = $db->query("SELECT id_categoria, nombre, ubicacion FROM noticias_categorias");
+
+
+    // $zip = 43101;
+    // $codigoPais = "ar";
+    // $apiKey = "5cb0bccef32d99b26506d2b0f48cb22e";
+
+    // $url = "http://api.openweathermap.org/data/2.5/weather?zip=".$zip.",".$codigoPais."&appid=".$apiKey;
+  
+    // $contents = file_get_contents($url);
+    // $clima = json_decode($contents, true);
+    
+    // echo $url;
+
+    // echo "--------------------";
+    // $clima_apikey = "axTqaaXXzaXfd3Z";
+    // $url = "https://api.tutiempo.net/json/?lan=es&apid=".$clima_apikey."&lid=43101";
+    // $WeatherJson = file_get_contents($url);
+    // $WeatherArray = json_decode($WeatherJson,true);
+    // echo $url;
+
+
+ 
+
+
+
+
 ?>
 <header>
+    <?php 
+
+    ?>
         <!-- Header Start -->
        <div class="header-area">
             <div class="main-header ">
