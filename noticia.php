@@ -1,5 +1,54 @@
 <?php
     include("./1nclud3s/Config_y_funciones.php");
+    require_once 'clases/Noticia.php';
+    require_once 'clases/Multimedia.php';
+    require_once 'clases/Comentario.php';
+    require_once 'clases/Columnista.php';
+    require_once 'clases/Categoria.php';
+    
+    //Obtiene el valor ID de la URL y consulta si es numerico 
+
+    if(is_numeric($_GET["id"]))
+	    $id_noticia=$_GET["id"];
+    else
+	    header("location:404.html");
+
+    $parametrosDeClases["db"] = $db;
+    $parametrosDeClases["config"] = $config;
+    $parametrosDeClases["id_noticia"] = $id_noticia;    
+    
+    $verNoticia = New Noticia($parametrosDeClases);
+    $multimedia = New Multimedia($parametrosDeClases);
+    $comentario = New Comentario($parametrosDeClases);
+    $columnista = New Columnista($parametrosDeClases);
+    $categoriaNoticia  = New Categoria($parametrosDeClases);
+
+
+ /////////////////////////////// Consultas /////////////////////////////////////////
+
+    $parametroConsulta = array("id_noticia" => $id_noticia );
+
+    $noticia     = $verNoticia->verNoticia();
+
+    $fotos       = $multimedia->archivosMultimedia("noticias_fotos");
+
+    $audios      = $multimedia->archivosMultimedia("noticias_audios"); 
+
+    $videos      = $multimedia->archivosMultimedia("noticias_videos");  
+
+    $adjuntos    = $multimedia->archivosMultimedia("noticias_adjuntos");
+
+    $comentarios = $comentario->listaComentario();
+
+    $lastPost    =   $verNoticia->getLastNews();
+
+    if($_POST):
+        $comentario->alta($_POST['nombre'],$_POST['texto']);
+    endif;
+
+    $fechaNoticia = fechaDiaMes($noticia["fecha"]);
+
+    $fecha = date("Y-m-d H:i:s");	
 
     
 ?>
@@ -9,33 +58,33 @@
     
 <!-- Mirrored from technext.github.io/aznews/details.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 14 Aug 2021 16:35:52 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
-<head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-         <title>News HTML-5 Template </title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>        
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>News HTML-5 Template </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="manifest" href="site.html">
-		<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <link rel="manifest" href="site.html">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 
-		<!-- CSS here -->
-            <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-            <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <!-- CSS here -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
 
-            <link rel="stylesheet" href="assets/css/ticker-style.css">
+    <link rel="stylesheet" href="assets/css/ticker-style.css">
 
-            <link rel="stylesheet" href="assets/css/flaticon.css">
+    <link rel="stylesheet" href="assets/css/flaticon.css">
 
-            <link rel="stylesheet" href="assets/css/slicknav.css">
-            <link rel="stylesheet" href="assets/css/animate.min.css">
-            <link rel="stylesheet" href="assets/css/magnific-popup.css">
-            <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
-            <link rel="stylesheet" href="assets/css/themify-icons.css">
-            <link rel="stylesheet" href="assets/css/slick.css">
-            <link rel="stylesheet" href="assets/css/nice-select.css">
-            <link rel="stylesheet" href="assets/css/style.css">
-            <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/slicknav.css">
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/themify-icons.css">
+    <link rel="stylesheet" href="assets/css/slick.css">
+    <link rel="stylesheet" href="assets/css/nice-select.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
    </head>
 
    <body>
