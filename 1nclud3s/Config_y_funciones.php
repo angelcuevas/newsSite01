@@ -8,7 +8,7 @@ $config["db"]["db_nombre"]  = "prechi_db";
 include_once("db.inc.pdo.php");
 
 $config["url"]["host"]        ="http://" .$_SERVER["SERVER_NAME"];
-$config["url"]["urlImagenes"] = $config["url"]["host"]."/multimedia/imagenes/";
+$config["url"]["urlImagenes"] = "http://angelcuevas.ddns.net/multimedia/imagenes/";  //$config["url"]["host"]."/multimedia/imagenes/";
 $config["url"]["urlAudios"]   = $config["url"]["host"]."/multimedia/audios/";
 $config["url"]["urlAdjuntos"] = $config["url"]["host"]."/multimedia/adjuntos/";
 $config["url"]["urlNoticia"] = $config["url"]["host"]."/ver_noticia.php?id=";

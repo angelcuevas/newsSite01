@@ -161,7 +161,7 @@ foreach($categorias as $key => $value ){
 	endif;
 }
 			
-echo print_r($arrayCategorias);	
+
 
 ?>
 
