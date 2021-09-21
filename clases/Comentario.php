@@ -19,7 +19,7 @@ class Comentario{
         
         $parametroConsulta = array("id_noticia" => $this->id_noticia );
         
-        $cometario = $this->db->query("SELECT  fecha,nombre,texto FROM noticias_comentarios  WHERE id_noticia = :id_noticia AND revisado=1 ORDER BY Fecha DESC",$parametroConsulta);
+        $cometario = $this->db->query("SELECT  fecha,nombre,id_miembro,texto FROM noticias_comentarios  WHERE id_noticia = :id_noticia AND revisado=1 ORDER BY Fecha DESC",$parametroConsulta);
         
         return $cometario;
     }
@@ -30,8 +30,7 @@ class Comentario{
             
             $parametroConsulta = array("id_noticia" => $this->id_noticia , "nombre" => $nombre,"texto" => $texto );
         
-            //$this->db->exec("INSERT INTO noticias_comentarios(id_noticia,id_miembro,fecha,texto,habilitado,revisado) VALUES(:id_noticia,:nombre,NOW(),:texto,1,0)",$parametroConsulta);
-            $this->db->exec("INSERT INTO noticias_comentarios(id_noticia,id_miembro,fecha,texto,habilitado,revisado) VALUES(".$this->id_noticia.",'".$nombre."',NOW(),'".$texto."',1,0)");
+            $this->db->exec("INSERT INTO noticias_comentarios(id_noticia,id_miembro,fecha,texto,habilitado,revisado) VALUES(:id_noticia,:nombre,NOW(),:texto,1,0)",$parametroConsulta);
     
             $this->tipoDeMensaje = "exito";
         

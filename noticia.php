@@ -88,6 +88,25 @@
     <link rel="stylesheet" href="assets/css/nice-select.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
+
+    <style>
+        .circle {
+            background: #61EAF9;
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 75px; 
+            font-size: 2em;
+            font-weight: bold;
+            font-family: 'helvetica';
+            color: #333;
+
+        }
+
+    </style>
+
    </head>
 
    <body>
