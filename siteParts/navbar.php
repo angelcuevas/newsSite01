@@ -1,7 +1,6 @@
 <?php 
     $categorias = $db->query("SELECT id_categoria, nombre, ubicacion FROM noticias_categorias");
 
-
     // $zip = 43101;
     // $codigoPais = "ar";
     // $apiKey = "5cb0bccef32d99b26506d2b0f48cb22e";
@@ -61,7 +60,10 @@
                             <!-- Logo -->
                             <div class="col-xl-3 col-lg-3 col-md-3">
                                 <div class="logo">
-                                    <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                                    <a href="index.php">
+                                        <!-- <img src="assets/img/logo/logo.png" alt=""> -->ç
+                                        <h1>LOGO</h1>
+                                    </a>
                                 </div>
                             </div>
                             <div class="col-xl-9 col-lg-9 col-md-9">
@@ -88,7 +90,7 @@
                                             <?php 
                                                 foreach($categorias as $categoria){
                                                     ?>                                                    
-                                                        <li> <a href=""><?php echo $categoria[nombre];?></a></li>                                                  
+                                                        <li> <a href="categoria.php?id=<?php echo $categoria["id_categoria"]; ?>"><?php echo $categoria["nombre"];?></a></li>                                                  
                                                     <?php                                                   
                                                 }                                                
                                             ?>

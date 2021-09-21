@@ -42,13 +42,16 @@
 
     $lastPost    =   $verNoticia->getLastNews();
 
-    if($_POST):
-        $comentario->alta($_POST['nombre'],$_POST['texto']);
-    endif;
+    if($_POST){
+        echo "por aca ".$_POST["nombre"]." ".$_POST["texto"] ;
+        echo $comentario->alta($_POST['nombre'],$_POST['texto']);
+    }
 
     $fechaNoticia = fechaDiaMes($noticia["fecha"]);
 
     $fecha = date("Y-m-d H:i:s");	
+
+
 
     
 ?>
@@ -85,6 +88,25 @@
     <link rel="stylesheet" href="assets/css/nice-select.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
+
+    <style>
+        .circle {
+            background: #61EAF9;
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 75px; 
+            font-size: 2em;
+            font-weight: bold;
+            font-family: 'helvetica';
+            color: #333;
+
+        }
+
+    </style>
+
    </head>
 
    <body>
@@ -159,34 +181,41 @@
                                     </div>
                                 </div> -->
                             </div>
+
+
+
                             <!-- From -->
                             <div class="row">
+                                
                                 <div class="col-lg-8">
-                                    <form class="form-contact contact_form mb-80" action="https://technext.github.io/aznews/contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+
+                                <?php include('./siteParts/comentarios.php'); ?>
+
+                                    <form class="form-contact contact_form mb-80" action="noticia.php?id=<?php echo $id_noticia; ?>&acc=comentario" method="POST" id="contactForm2" novalidate="novalidate">
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                    <textarea class="form-control w-100 error" name="message" id="message" cols="30" rows="9" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'" placeholder="Enter Message"></textarea>
+                                                    <textarea class="form-control w-100 error" name="texto" id="message" cols="30" rows="9" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'" placeholder="Enter Message"></textarea>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-12">
                                                 <div class="form-group">
-                                                    <input class="form-control error" name="name" id="name" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" placeholder="Enter your name">
+                                                    <input class="form-control error" name="nombre" id="nombre" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" placeholder="Enter your name">
                                                 </div>
                                             </div>
-                                            <div class="col-sm-6">
+                                            <!-- <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <input class="form-control error" name="email" id="email" type="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" placeholder="Email">
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
+                                            </div> -->
+                                            <!-- <div class="col-12">
                                                 <div class="form-group">
                                                     <input class="form-control error" name="subject" id="subject" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Subject'" placeholder="Enter Subject">
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <div class="form-group mt-3">
-                                            <button type="submit" class="button button-contactForm boxed-btn">Send</button>
+                                            <button type="submit" class="button button-contactForm boxed-btn">Enviar</button>
                                         </div>
                                     </form>
                                 </div>
@@ -194,11 +223,11 @@
                         </div>
                         <div class="col-lg-4">
                             <!-- Section Tittle -->
-                            <div class="section-tittle mb-40">
+                            <!-- <div class="section-tittle mb-40">
                                 <h3>Follow Us</h3>
-                            </div>
+                            </div> -->
                             <!-- Flow Socail -->
-                            <div class="single-follow mb-45">
+                            <!-- <div class="single-follow mb-45">
                                 <div class="single-box">
                                     <div class="follow-us d-flex align-items-center">
                                         <div class="follow-social">
@@ -237,7 +266,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- New Poster -->
                             <div class="news-poster d-none d-lg-block">
                                 <img src="assets/img/news/news_card.jpg" alt="">
