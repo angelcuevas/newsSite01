@@ -11,7 +11,13 @@
             <div class="user justify-content-between d-flex">
             <div class="thumb">
                 <!-- <img src="assets/img/comment/comment_1.png" alt=""> -->
-                <div class="circle">C</div>
+                <?php 
+                    $letra = "s"; 
+                    if(isset($comentario["id_miembro"])){
+                        $letra = substr($comentario["id_miembro"],0,1);
+                    }
+                ?>
+                <div class="circle"> <?php echo $letra; ?> </div>
             </div>
             <div class="desc">
                 <p class="comment">

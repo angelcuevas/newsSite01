@@ -6,6 +6,8 @@
     $abajo = array_slice($noticiasTapa, 0, - (count($noticiasTapa)-3) );
 
     $lateral = array_slice($noticiasTapa, 0, - (count($noticiasTapa)-5) );
+
+
     
 
 ?>
@@ -21,9 +23,13 @@
                             <!-- <p>Rem ipsum dolor sit amet, consectetur adipisicing elit.</p> -->
                             <div class="trending-animated">
                                 <ul id="js-news" class="js-hidden">
-                                    <li class="news-item">Bangladesh dolor sit amet, consectetur adipisicing elit.</li>
-                                    <li class="news-item">Spondon IT sit amet, consectetur.......</li>
-                                    <li class="news-item">Rem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                                    <?php 
+                                        foreach ($noticiasTapa as $noticia) {
+                                            ?>
+                                                <li class="news-item"><?php echo $noticia["titulo"]; ?></li>
+                                            <?php
+                                        }
+                                    ?>
                                 </ul>
                             </div>
                             

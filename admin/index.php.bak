@@ -1,0 +1,27 @@
+<?php
+include("includes/db.inc.php");
+include("includes/funciones.inc.php");
+conectar();
+
+include("partes/top.php");
+?> 
+<div class="center_content">
+	<div class="right_content" style="width:94%;">
+		<?php include("mensajes.php"); ?>
+    <?php if(empty($_SESSION["id_administrador"])){ ?>
+		<div>
+			<div style="width:400px;margin:0px auto;">
+			<h2>Login</h2>
+			<form method="POST" action="entrar.php">
+				<label>Usuario:</label>
+				<input type="text" name="usuario" required>
+				<label>Contraseña:</label>
+				<input type="password" name="pass" required>
+				<input type="submit" value="Entrar" style="margin-left:12px;">
+			</form>
+		</div>
+	<?php }else{ ?>
+	<?php } ?>
+	</div>
+</div>                    
+<?php include("partes/fotter.php"); ?>

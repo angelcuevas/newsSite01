@@ -61,8 +61,8 @@
                             <div class="col-xl-3 col-lg-3 col-md-3">
                                 <div class="logo">
                                     <a href="index.php">
-                                        <!-- <img src="assets/img/logo/logo.png" alt=""> -->ç
-                                        <h1>LOGO</h1>
+                                        <img src="assets/logo.jpg" alt="" style="max-height: 100px;">
+                                        
                                     </a>
                                 </div>
                             </div>
@@ -80,7 +80,7 @@
                             <div class="col-xl-10 col-lg-10 col-md-12 header-flex">
                                 <!-- sticky -->
                                     <div class="sticky-logo">
-                                        <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                                        <a href="index.php"><img src="assets/logo.jpg" alt="" style="max-height: 100px;"></a>
                                     </div>
                                 <!-- Main-menu -->
                                 <div class="main-menu d-none d-md-block">
@@ -110,7 +110,7 @@
                                     <i class="fas fa-search special-tag"></i>
                                     <div class="search-box">
                                         <form action="#">
-                                            <input type="text" placeholder="Search">
+                                            <input type="text" placeholder="Buscar">
                                             
                                         </form>
                                     </div>

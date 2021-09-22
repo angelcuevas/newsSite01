@@ -1,0 +1,29 @@
+
+div.pagination {
+clear:both;
+width: 90%;
+color:#ccc;
+}
+
+div.pagination ul#pagination-clean{
+	list-style: none;
+}
+
+div.pagination ul#pagination-clean li{
+	display:inline-block;
+	margin:2px;
+	border:2px solid #B83E21;
+	line-height: 27px;
+	width: 27px;
+	height: 27px;
+	text-align: center;
+}
+
+div.pagination ul#pagination-clean li a{
+	text-decoration: none;
+	width:100%;
+	height:100%;
+	display:block;
+	background-color: #D24726;
+	color:#fff;
+}

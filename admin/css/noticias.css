@@ -1,0 +1,24 @@
+.largo input,.largo textarea,.largo select{
+	display:block;
+	width:95%;
+}
+
+.agregarnoticia label
+{
+	display:block;
+	font-weight: bold;
+	color:#000;
+	font-size: 15px;
+}
+
+.mitad
+{
+	width: 50%;
+	float:left;
+	margin-left:-1px;
+}
+
+.clear
+{
+	clear: both;
+}
