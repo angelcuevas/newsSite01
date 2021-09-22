@@ -38,11 +38,12 @@
 
     $where = getWhere($id_categoria,$busquedaStr);
 
-    $qry =  $db->query("SELECT COUNT(noticias.id_noticia) as cantidad	FROM noticias_tapa INNER JOIN noticias ON  noticias_tapa.Id_Noticia = noticias.id_Noticia LEFT JOIN noticias_categorias ON noticias_categorias.id_categoria = noticias.id_categoria where 1 ".$where."  ORDER BY noticias_tapa.ubicacion ASC ");
-    $cantidadRows = $qry[0]["cantidad"];
+    $qry =  $db->query("SELECT noticias.id_noticia as cantidad	FROM noticias_tapa INNER JOIN noticias ON  noticias_tapa.Id_Noticia = noticias.id_Noticia LEFT JOIN noticias_categorias ON noticias_categorias.id_categoria = noticias.id_categoria where 1 ".$where." GROUP BY noticias.id_noticia ORDER BY noticias_tapa.ubicacion ASC ");
+    $cantidadRows = count($qry);
 
     $noticias = $db->query("SELECT noticias.hits,noticias.id_categoria,	noticias_tapa.columna,	noticias.id_noticia, noticias.volanta,	noticias.copete,	noticias.titulo,	noticias.fecha,	noticias.activa, noticias_categorias.nombre, COUNT(comentarios.id_comentario) as cantidadComentarios FROM noticias_tapa INNER JOIN noticias ON  noticias_tapa.Id_Noticia = noticias.id_Noticia LEFT JOIN noticias_categorias ON noticias_categorias.id_categoria = noticias.id_categoria LEFT JOIN noticias_comentarios AS comentarios ON comentarios.revisado = 1 AND comentarios.id_noticia = noticias.id_noticia where 1 ".$where." GROUP BY noticias.id_noticia  ORDER BY noticias_tapa.ubicacion ASC limit ".($nroPagina * 4).",4");
-    $cantidadDePaginas = ceil(($cantidadRows/4));
+    
+    if($cantidadRows > 1) {$cantidadDePaginas = ceil(($cantidadRows/4));} else {$cantidadDePaginas = $cantidadRows;};
 
 ?>
 
@@ -112,8 +113,8 @@
                             ?>
                                 <article class="blog_item">
                                     <div class="blog_item_img">
-                                        <?php $foto = getFoto($fotos,$noticia); ?>
-                                        <img style="max-height: 500px;" class="card-img rounded-0" src="<?php echo $config["url"]["urlImagenes"]."".$foto["url"];?>" alt="">
+                                        <?php $foto = getFoto($fotos,$noticia); //style="max-height: 500px;" ?>
+                                        <img  class="card-img rounded-0" src="<?php echo $config["url"]["urlImagenes"]."".$foto["url"];?>" alt="">
                                         <a href="#" class="blog_item_date">
                                             <h3>  </h3>
                                             <p> <?php echo mostrarSoloFecha($noticia["fecha"]); ?>  </p>
@@ -149,7 +150,12 @@
                                     for ($i=0; $i < $cantidadDePaginas; $i++) { 
                                         ?>
                                             <li class="page-item <?php if(($i) ==$nroPagina ) echo "active"; ?>">
-                                                <?php $url = "categoria.php?id=".$id_categoria."&pagina=".($i+1)."" ;  ?>
+                                                <?php
+                                                    if($id_categoria == "")
+                                                        $url = "categoria.php?pagina=".($i+1)."" ; 
+                                                     else
+                                                        $url = "categoria.php?id=".$id_categoria."&pagina=".($i+1)."" ; 
+                                                ?>
                                                 <a href="<?php echo $url?>" class="page-link "> <?php echo $i+1; ?> </a>
                                             </li>
                                         <?php

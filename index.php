@@ -70,7 +70,7 @@
         <?php //include("./siteParts/youtube.php"); ?>
         <!-- End Start youtube -->
         <!--  Recent Articles start -->
-        <?php include("siteParts/recientes.php"); ?>    
+        <?php //include("siteParts/recientes.php"); ?>    
                                   
         <!--Recent Articles End -->
 

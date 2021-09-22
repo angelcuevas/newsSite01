@@ -19,7 +19,11 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="footer-menu f-right">
-                                <ul>                             
+                                <ul>       
+              
+                                    <li><a href="https://twitter.com/catamarcauno?s=09"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="https://www.facebook.com/catamarcauno/"><i class="fab fa-facebook"></i></a></li>
+                                 
                                     <!-- <li><a href="#">Terms of use</a></li>
                                     <li><a href="#">Privacy Policy</a></li> -->
                                     <li><a href="contacto.php">Contacto</a></li>
