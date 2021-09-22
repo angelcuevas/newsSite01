@@ -14,7 +14,7 @@
 	    $id_noticia=$_GET["id"];
     else
 	    header("location:404.html");
-
+    
     $parametrosDeClases["db"] = $db;
     $parametrosDeClases["config"] = $config;
     $parametrosDeClases["id_noticia"] = $id_noticia;    
@@ -30,7 +30,7 @@
 
     $parametroConsulta = array("id_noticia" => $id_noticia );
 
-    $noticia     = $verNoticia->verNoticia();
+    $currentNoticia     = $verNoticia->verNoticia();
 
     $fotos       = $multimedia->archivosMultimedia("noticias_fotos");
 
@@ -48,13 +48,10 @@
         $comentario->alta($_POST['nombre'],$_POST['texto']);
     }
 
-    $fechaNoticia = fechaDiaMes($noticia["fecha"]);
+    $fechaNoticia = fechaDiaMes($currentNoticia["fecha"]);
 
     $fecha = date("Y-m-d H:i:s");	
 
-
-
-    
 ?>
 
 <!doctype html>
@@ -65,7 +62,7 @@
 <head>        
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>News HTML-5 Template </title>
+    <?php include("siteParts/titulo.php");?>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -106,6 +103,8 @@
 
         }
 
+
+
     </style>
 
    </head>
@@ -143,20 +142,32 @@
                             <!-- Trending Tittle -->
                             <div class="about-right mb-90">
                                 <div class="about-img">
-                                    <img src="<?php echo $config["url"]["urlImagenes"]."".$fotos[0]["url"];?>" alt=""> 
+                                    <?php
+                                        if(count($fotos) == 1){
+                                            ?>
+                                                <img src="<?php echo $config["url"]["urlImagenes"]."".$fotos[0]["url"];?>" alt=""> 
+                                            <?php
+                                        }else{
+                                           if(count( $fotos  ) > 0 ){?>
+                                                <?php include("siteParts/noticia_fotos.php"); ?>  
+                                            <?php
+                                            }
+                                        }
+                                    ?>
+                                    
                                 </div>
                                 <div class="section-tittle mb-30 pt-30">
-                                    <h3><?php echo $noticia["titulo"]; ?></h3>
+                                    <h3><?php echo $currentNoticia["titulo"]; ?></h3>
                                 </div>
                                 <div class="about-prea">
-                                    <p><i><?php echo $noticia["copete"]; ?></i> </p>
+                                    <p><i><?php echo $currentNoticia["copete"]; ?></i> </p>
                                 </div> 
                                 <br/>
                                 <!-- <div class="section-tittle">
                                     <h3>Unordered list style?</h3>
                                 </div> -->
                                 <div class="about-prea">
-                                    <?php echo $noticia["cuerpo"]; ?>
+                                    <?php echo $currentNoticia["cuerpo"]; ?>
 
                                 </div>
                                 <!-- <div class="social-share pt-30">
@@ -170,9 +181,61 @@
                                         </ul>
                                     </div>
                                 </div> -->
+                                <div>
+                                    <?php if(count($audios)): ?>
+										
+                                        <div class="clearfix"></div>
+                                                
+                                        <?php foreach($audios as $audio ): ?>
+                                        
+                                            <br>
+                                        
+                                            <audio  src="<?php $multimedia->audioLink($audio); ?>" preload="auto" controls></audio>
+            
+                                            <?php if(!empty($audio["descripcion"])): ?>
+                                    
+                                                <div class="mutlimedia-description " style="padding-left: 25px;"> <?php echo $audio["descripcion"] ?></div>
+                                    
+                                            <?php endif; ?>                        
+                                                    
+                                        <?php endforeach; ?>	
+                                                        
+                                        <div class="clearfix mb-30"></div>
+                                                    
+                                    <?php endif; ?>  
+                                </div>
+                                <div>
+                                    <?php if( count($adjuntos)>0 ): ?>
+                                        <br>
+                                        <?php foreach( $adjuntos as $adjunto): ?>
+                                            <a download href="<?php echo  $config["url"]["urlAdjuntos"].$adjunto["url"]  ?>" >
+                                            <button class="btn btn-outline-secondary" style="margin:5px;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                                                <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"></path>
+                                                <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"></path>
+                                                </svg>
+                                                <!-- <span class="reply-icon"><img src="assets/img/adjunto.png" /> </span> -->
+                                                <?php echo  $adjunto["descripcion"] ?>	
+                                                </button>
+                                            </a>    
+                                        <?php endforeach; ?>				
+                                    <?php endif; ?>  
+                                </div>  
+
+                                <div>
+                                    <?php if(count( $videos  ) > 0 ): ?>
+                                        <?php include("siteParts/youtube_noticia.php"); ?>  
+                                    <?php endif; ?>  
+                                </div>                   
+
+                   
+                                <div>
+                                                <!-- FOTOS -->
+                                </div>  
+
                             </div>
-
-
+   
+ 
 
                             <!-- From -->
                             <div class="row">
@@ -220,56 +283,13 @@
                             </div>
                         </div>
                         <div class="col-lg-4">
-                            <!-- Section Tittle -->
-                            <!-- <div class="section-tittle mb-40">
-                                <h3>Follow Us</h3>
-                            </div> -->
-                            <!-- Flow Socail -->
-                            <!-- <div class="single-follow mb-45">
-                                <div class="single-box">
-                                    <div class="follow-us d-flex align-items-center">
-                                        <div class="follow-social">
-                                            <a href="#"><img src="assets/img/news/icon-fb.png" alt=""></a>
-                                        </div>
-                                        <div class="follow-count">  
-                                            <span>8,045</span>
-                                            <p>Fans</p>
-                                        </div>
-                                    </div> 
-                                    <div class="follow-us d-flex align-items-center">
-                                        <div class="follow-social">
-                                            <a href="#"><img src="assets/img/news/icon-tw.png" alt=""></a>
-                                        </div>
-                                        <div class="follow-count">
-                                            <span>8,045</span>
-                                            <p>Fans</p>
-                                        </div>
-                                    </div>
-                                        <div class="follow-us d-flex align-items-center">
-                                        <div class="follow-social">
-                                            <a href="#"><img src="assets/img/news/icon-ins.png" alt=""></a>
-                                        </div>
-                                        <div class="follow-count">
-                                            <span>8,045</span>
-                                            <p>Fans</p>
-                                        </div>
-                                    </div>
-                                    <div class="follow-us d-flex align-items-center">
-                                        <div class="follow-social">
-                                            <a href="#"><img src="assets/img/news/icon-yo.png" alt=""></a>
-                                        </div>
-                                        <div class="follow-count">
-                                            <span>8,045</span>
-                                            <p>Fans</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
+                            <?php include("siteParts/social_media.php"); ?>
                             <!-- New Poster -->
                             <div class="news-poster d-none d-lg-block">
                                 <img src="assets/img/news/news_card.jpg" alt="">
                             </div>
                         </div>
+                                          
                    </div>
             </div>
         </div>
@@ -320,6 +340,18 @@
 		<!-- Jquery Plugins, main Jquery -->	
         <script src="assets/js/plugins.js"></script>
         <script src="assets/js/main.js"></script>
+
+        <script>
+window.player = new window.YT.Player(video, {
+  videoId: videoId,
+  playerVars: {
+    autoplay: 1,
+    modestbranding: 1,
+    rel: 0
+    // more parameters here
+  }
+});
+</script>
         
     </body>
 

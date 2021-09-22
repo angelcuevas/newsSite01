@@ -36,7 +36,7 @@ if (!empty($_POST)){
 
 
 	if ($id_noticia == 0){
-        
+
 		mysql_query("INSERT INTO noticias(id_categoria,volanta,titulo,copete,cuerpo,fecha,fecha_vencimiento,palabras_clave,activa,autor,id_columnista,um) VALUES('$id_categoria','$volanta','$titulo','$copete','$cuerpo','$fecha','$fecha_vencimiento','$palabras_clave','$activa','$autor','$id_columnista','$um')");
 		$id_noticia = mysql_insert_id();
 		header("Location: noticias.php?editar_id=".$id_noticia."&exito=agregar");

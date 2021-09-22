@@ -39,8 +39,8 @@
                             <div class="row d-flex justify-content-between align-items-center">
                                 <div class="header-info-left">
                                     <ul>     
-                                        <li><img src="assets/img/icon/header_icon1.png" alt="">34ºc, Sunny </li>
-                                        <li><img src="assets/img/icon/header_icon1.png" alt=""> <?php mostrarFechaDeHoy(); ?> </li>
+                                        <!-- <li><img src="assets/img/icon/header_icon1.png" alt="">34ºc, Sunny </li> <img src="assets/img/icon/header_icon1.png" alt=""> -->
+                                        <li> <?php mostrarFechaDeHoy(); ?> </li>
                                     </ul>
                                 </div>
                                 <div class="header-info-right">

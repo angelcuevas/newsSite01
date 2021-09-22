@@ -1,5 +1,5 @@
 <?php 
-    $noticias = array_slice($noticiasTapa, 0, - (count($noticiasTapa)-5) );
+    $semanales = $db->query("SELECT noticias.hits,noticias.id_categoria,	noticias_tapa.columna,	noticias.id_noticia, noticias.volanta,	noticias.copete,	noticias.titulo,	noticias.fecha,	noticias.activa, noticias_categorias.nombre	FROM noticias_tapa INNER JOIN noticias ON  noticias_tapa.Id_Noticia = noticias.id_Noticia LEFT JOIN noticias_categorias ON noticias_categorias.id_categoria = noticias.id_categoria where columna = 3 ORDER BY noticias_tapa.ubicacion ASC");
 ?>
 
 <!--   Weekly-News start -->
@@ -18,12 +18,15 @@
                     <div class="col-12">
                         <div class="weekly-news-active dot-style d-flex dot-style">
                             <?php
-                                foreach ($noticias as $noticia) {
+                                foreach ($semanales as $noticia) {
 
                             ?>
-                            <div class="weekly-single">
+                            <div class="weekly-single" >
                                 <div class="weekly-img">
-                                    <?php $foto = getFoto($fotos,$noticia); ?>
+                                    <?php 
+                                        // style="min-height:400px;"
+                                        $foto = getFoto($fotos,$noticia);
+                                    ?>
                                     <img src="<?php echo $config["url"]["urlImagenes"]."".$foto["url"];?>" alt="">
                                 </div>
                                 <div class="weekly-caption">

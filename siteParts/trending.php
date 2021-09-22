@@ -1,14 +1,22 @@
 <?php
 
+    $trending = $db->query("SELECT noticias.hits,noticias.id_categoria,	noticias_tapa.columna,	noticias.id_noticia, noticias.volanta,	noticias.copete,	noticias.titulo,	noticias.fecha,	noticias.activa, noticias_categorias.nombre	FROM noticias_tapa INNER JOIN noticias ON  noticias_tapa.Id_Noticia = noticias.id_Noticia LEFT JOIN noticias_categorias ON noticias_categorias.id_categoria = noticias.id_categoria where columna = 2 ORDER BY noticias_tapa.ubicacion ASC");
+    $abajo = Array();
+    $lateral = Array();
 
-    $principal = array_shift($noticiasTapa);
+    $principal = array_shift($trending);
     
-    $abajo = array_slice($noticiasTapa, 0, - (count($noticiasTapa)-3) );
+    //$abajo = array_slice($trending, 0, - (count($trending)-3) );
+    //$lateral = array_slice($trending, 0, - (count($trending)-5) );
+    if(count($trending) > 0) array_push($abajo, array_shift($trending) );
+    if(count($trending) > 0) array_push($abajo, array_shift($trending) );
+    if(count($trending) > 0) array_push($abajo, array_shift($trending) );
 
-    $lateral = array_slice($noticiasTapa, 0, - (count($noticiasTapa)-5) );
-
-
-    
+    if(count($trending) > 0) array_push($lateral, array_shift($trending) );
+    if(count($trending) > 0) array_push($lateral, array_shift($trending) );
+    if(count($trending) > 0) array_push($lateral, array_shift($trending) );
+    if(count($trending) > 0) array_push($lateral, array_shift($trending) );
+    if(count($trending) > 0) array_push($lateral, array_shift($trending) );
 
 ?>
 

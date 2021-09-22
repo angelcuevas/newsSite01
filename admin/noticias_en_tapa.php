@@ -6,12 +6,15 @@ $tamaño_pagina = 20;
 
 // col = 0 para um; 1 para izq; 2 derecha; col = Columna;3 para columnistas en tapa;
 
-$idCategoria="";
+$idCategoria= $_GET["id_categoria"];
 
-$selectIdCategoria=1;
+$selectIdCategoria="id_categoria={$idCategoria}";//1
 
-if( !empty($_GET["id_categoria"]) and $_GET["id_categoria"] <> 1 ):
-	
+$mostrarTodasLasNoticias = false; 
+
+
+if( !empty($_GET["id_categoria"]) and (int)$_GET["id_categoria"] > 5 ):
+	$mostrarTodasLasNoticias = true;
 	$idCategoria = $_GET["id_categoria"];
 	
 	$selectIdCategoria =	"id_categoria={$idCategoria}";
@@ -100,15 +103,18 @@ if(!empty($_GET["orden"])){
 	
 
     $idCategoria = ( $idCategoria == "") ? 1 : $idCategoria; 
-
+	
 	$noticias_tapa = consulta("SELECT noticias_tapa.id_noticia_tapa,noticias_tapa.id_noticia,noticias.id_noticia,noticias.titulo,noticias.fecha FROM noticias_tapa,noticias WHERE noticias_tapa.id_noticia = noticias.id_noticia and columna = {$idCategoria} ORDER BY ubicacion ASC");
 	
     $largoDeTabla = "style='width:33.3%'";
 	
+$cosa = $selectIdCategoria;
+if($mostrarTodasLasNoticias === false){
+	$cosa = "1";
+}
 
 
-
-$sql_paginador = "SELECT id_noticia,titulo,fecha from noticias WHERE {$selectIdCategoria} order by fecha DESC";
+$sql_paginador = "SELECT id_noticia,titulo,fecha from noticias WHERE {$cosa} order by fecha DESC";
 
 $consulta_noticias = datos_paginador($sql_paginador,$tamaño_pagina,$link);
 
@@ -118,7 +124,10 @@ include("partes/top.php");
 
 /*-------------- Se ubica debajo del top.php porque en el se crea el array $categoria ---*/
 
-$nombreCategoria = "Slider";
+$nombreCategoria = "Tendencias";
+
+if($idCategoria == 2) $nombreCategoria = "Principales";
+if($idCategoria == 3) $nombreCategoria = "Semanales";
 
 foreach($categorias as $listado_categorias ):
 
@@ -140,8 +149,7 @@ endforeach;
     <div class="right_content" style="width:95%;">            
 
 
-
-
+	
 	
 	<h2><?php echo $nombreCategoria;?> </h2>
 
