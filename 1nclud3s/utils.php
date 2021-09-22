@@ -22,4 +22,24 @@
 
         return $partes[0];
     }
+
+    function determinarDireccionDebusqueda(){
+        $url = $_SERVER['REQUEST_URI']; 
+        $end = end(explode('/', $url));
+        $file = explode('?', $end);
+        
+        if($file[0] == "index.php"){
+            echo "categoria.php";
+        }
+        if($file[0] == "categoria.php")
+            echo "#";
+    }
+
+    function mostrarFechaDeHoy(){
+        $diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+        $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+        
+        echo $diassemana[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y') ;
+        
+    }
 ?>

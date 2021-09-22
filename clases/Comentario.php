@@ -30,7 +30,7 @@ class Comentario{
             
             $parametroConsulta = array("id_noticia" => $this->id_noticia , "nombre" => $nombre,"texto" => $texto );
         
-            $this->db->exec("INSERT INTO noticias_comentarios(id_noticia,id_miembro,fecha,texto,habilitado,revisado) VALUES(:id_noticia,:nombre,NOW(),:texto,1,0)",$parametroConsulta);
+            $this->db->exec("INSERT INTO noticias_comentarios(id_noticia,id_miembro,fecha,texto,habilitado,revisado) VALUES(:id_noticia,:nombre,NOW(),:texto,1,1)",$parametroConsulta);
     
             $this->tipoDeMensaje = "exito";
         

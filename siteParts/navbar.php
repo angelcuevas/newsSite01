@@ -40,14 +40,13 @@
                                 <div class="header-info-left">
                                     <ul>     
                                         <li><img src="assets/img/icon/header_icon1.png" alt="">34ºc, Sunny </li>
-                                        <li><img src="assets/img/icon/header_icon1.png" alt="">Tuesday, 18th June, 2019</li>
+                                        <li><img src="assets/img/icon/header_icon1.png" alt=""> <?php mostrarFechaDeHoy(); ?> </li>
                                     </ul>
                                 </div>
                                 <div class="header-info-right">
                                     <ul class="header-social">    
-                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                       <li> <a href="#"><i class="fab fa-pinterest-p"></i></a></li>
+                                        <li><a href="https://www.facebook.com/catamarcauno/"><i class="fab fa-facebook"></i></a></li>
+                                        <li><a href="https://twitter.com/catamarcauno?s=09"><i class="fab fa-twitter"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -61,7 +60,7 @@
                             <div class="col-xl-3 col-lg-3 col-md-3">
                                 <div class="logo">
                                     <a href="index.php">
-                                        <img src="assets/logo.jpg" alt="" style="max-height: 100px;">
+                                        <img src="assets/logo.png" alt="" style="max-height: 100px;">
                                         
                                     </a>
                                 </div>
@@ -80,7 +79,7 @@
                             <div class="col-xl-10 col-lg-10 col-md-12 header-flex">
                                 <!-- sticky -->
                                     <div class="sticky-logo">
-                                        <a href="index.php"><img src="assets/logo.jpg" alt="" style="max-height: 100px;"></a>
+                                        <a href="index.php"><img src="assets/logo.png" alt="" style="max-height: 100px;"></a>
                                     </div>
                                 <!-- Main-menu -->
                                 <div class="main-menu d-none d-md-block">
@@ -109,8 +108,8 @@
                                 <div class="header-right-btn f-right d-none d-lg-block">
                                     <i class="fas fa-search special-tag"></i>
                                     <div class="search-box">
-                                        <form action="#">
-                                            <input type="text" placeholder="Buscar">
+                                        <form action="<?php determinarDireccionDebusqueda(); ?>" method="POST" >
+                                            <input type="text" name="busqueda" placeholder="Buscar" value="<?php if(isset($busquedaStr)) echo $busquedaStr; ?>">
                                             
                                         </form>
                                     </div>

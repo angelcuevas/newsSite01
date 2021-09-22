@@ -1,6 +1,7 @@
 <?php
 ob_start();
 $StartTime=microtime(1);
+ini_set('display_errors', '0');
 
 include_once("escape.inc.php");
 include_once("config.inc.php");
@@ -56,8 +57,8 @@ function desconectar($link)
 	{
 		try {
 			mysql_close($link);
-		} catch (Throwable $th) {
-			//throw $th;
+		} catch (Exception $e) {
+			
 		}
 
 	}

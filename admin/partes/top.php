@@ -82,7 +82,7 @@
 							<li>
 								<a href="noticias_en_tapa.php" title="">Noticias en tapa</a>
 								<ul>
-									<li><a href="noticias_en_tapa.php" title="">Noticias en tapa Slider</a></li>
+									<li><a href="noticias_en_tapa.php" title="">Noticias en tapa Tendencias</a></li>
 									<?php	foreach($categorias as $listado_categorias ): ?>
 										<li><a href="noticias_en_tapa.php?id_categoria=<?php echo $listado_categorias["id_categoria"] ?>" title="">Noticias en tapa <?php echo $listado_categorias["nombre"] ?></a></li>
 									<?php endforeach; ?>

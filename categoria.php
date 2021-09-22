@@ -1,13 +1,15 @@
 <?php
+    if(is_numeric($_GET["id"]))
+    $id_categoria=$_GET["id"];
+// else
+//     header("location:404.html");
+
     include("./1nclud3s/Config_y_funciones.php");
     include("./1nclud3s/new_consultas.php");
     include("./1nclud3s/utils.php");
 
 
-    if(is_numeric($_GET["id"]))
-        $id_categoria=$_GET["id"];
-    else
-        header("location:404.html");
+
 
 
     if(is_numeric($_GET["pagina"])){
@@ -16,15 +18,30 @@
     }else
         $nroPagina = 0; 
 
+    $busquedaStr = "";
+    if($_POST){
+        $busquedaStr = $_POST["busqueda"];
+    }
     
 
 
-    
+    function getWhere($id_categoria,$busquedaStr){
+        $result = "";
+        
+        if(isset($id_categoria) && $id_categoria != "")
+            $result = $result." AND noticias.id_categoria = ".$id_categoria."";
+        if($busquedaStr != ""){
+            $result = $result." AND noticias.titulo LIKE '%".$busquedaStr."%'";
+        }
+        return $result;
+    }
 
-    $qry =  $db->query("SELECT COUNT(noticias.id_noticia) as cantidad	FROM noticias_tapa INNER JOIN noticias ON  noticias_tapa.Id_Noticia = noticias.id_Noticia LEFT JOIN noticias_categorias ON noticias_categorias.id_categoria = noticias.id_categoria where noticias.id_categoria = ".$id_categoria."  ORDER BY noticias_tapa.ubicacion ASC ");
+    $where = getWhere($id_categoria,$busquedaStr);
+
+    $qry =  $db->query("SELECT COUNT(noticias.id_noticia) as cantidad	FROM noticias_tapa INNER JOIN noticias ON  noticias_tapa.Id_Noticia = noticias.id_Noticia LEFT JOIN noticias_categorias ON noticias_categorias.id_categoria = noticias.id_categoria where 1 ".$where."  ORDER BY noticias_tapa.ubicacion ASC ");
     $cantidadRows = $qry[0]["cantidad"];
 
-    $noticias = $db->query("SELECT noticias.hits,noticias.id_categoria,	noticias_tapa.columna,	noticias.id_noticia, noticias.volanta,	noticias.copete,	noticias.titulo,	noticias.fecha,	noticias.activa, noticias_categorias.nombre	FROM noticias_tapa INNER JOIN noticias ON  noticias_tapa.Id_Noticia = noticias.id_Noticia LEFT JOIN noticias_categorias ON noticias_categorias.id_categoria = noticias.id_categoria where noticias.id_categoria = ".$id_categoria."  ORDER BY noticias_tapa.ubicacion ASC limit ".($nroPagina * 4).",4");
+    $noticias = $db->query("SELECT noticias.hits,noticias.id_categoria,	noticias_tapa.columna,	noticias.id_noticia, noticias.volanta,	noticias.copete,	noticias.titulo,	noticias.fecha,	noticias.activa, noticias_categorias.nombre, COUNT(comentarios.id_comentario) as cantidadComentarios FROM noticias_tapa INNER JOIN noticias ON  noticias_tapa.Id_Noticia = noticias.id_Noticia LEFT JOIN noticias_categorias ON noticias_categorias.id_categoria = noticias.id_categoria LEFT JOIN noticias_comentarios AS comentarios ON comentarios.revisado = 1 AND comentarios.id_noticia = noticias.id_noticia where 1 ".$where." GROUP BY noticias.id_noticia  ORDER BY noticias_tapa.ubicacion ASC limit ".($nroPagina * 4).",4");
     $cantidadDePaginas = ceil(($cantidadRows/4));
 
 ?>
@@ -87,6 +104,10 @@
                     <div class="blog_left_sidebar">
                         <?php 
 
+                        if($busquedaStr != "" && count($noticias) == 0 ){
+                            echo "<h5 class='text-center'>Sin resultados.</h5>";
+                        }
+
                         foreach ($noticias as $noticia) {
                             ?>
                                 <article class="blog_item">
@@ -106,7 +127,7 @@
                                         <p> <?php echo $noticia["copete"]; ?> </p>
                                         <ul class="blog-info-link">
                                             <li><a href="#"><i class="fa fa-user"></i> <?php echo $noticia["nombre"]; ?> </a></li>
-                                            <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                            <li><a href="#"><i class="fa fa-comments"></i> <?php echo $noticia["cantidadComentarios"];?> </a></li>
                                         </ul>
                                     </div>
                                 </article>
@@ -116,93 +137,6 @@
 
                         ?>
 
-                        <!-- <article class="blog_item">
-                            <div class="blog_item_img">
-                                <img class="card-img rounded-0" src="assets/img/blog/single_blog_2.png" alt="">
-                                <a href="#" class="blog_item_date">
-                                    <h3>15</h3>
-                                    <p>Jan</p>
-                                </a>
-                            </div>
-
-                            <div class="blog_details">
-                                <a class="d-inline-block" href="single-blog.html">
-                                    <h2>Google inks pact for new 35-storey office</h2>
-                                </a>
-                                <p>That dominion stars lights dominion divide years for fourth have don't stars is that
-                                    he earth it first without heaven in place seed it second morning saying.</p>
-                                <ul class="blog-info-link">
-                                    <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
-                                    <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
-                                </ul>
-                            </div>
-                        </article>
-
-                        <article class="blog_item">
-                            <div class="blog_item_img">
-                                <img class="card-img rounded-0" src="assets/img/blog/single_blog_3.png" alt="">
-                                <a href="#" class="blog_item_date">
-                                    <h3>15</h3>
-                                    <p>Jan</p>
-                                </a>
-                            </div>
-
-                            <div class="blog_details">
-                                <a class="d-inline-block" href="single-blog.html">
-                                    <h2>Google inks pact for new 35-storey office</h2>
-                                </a>
-                                <p>That dominion stars lights dominion divide years for fourth have don't stars is that
-                                    he earth it first without heaven in place seed it second morning saying.</p>
-                                <ul class="blog-info-link">
-                                    <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
-                                    <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
-                                </ul>
-                            </div>
-                        </article>
-
-                        <article class="blog_item">
-                            <div class="blog_item_img">
-                                <img class="card-img rounded-0" src="assets/img/blog/single_blog_4.png" alt="">
-                                <a href="#" class="blog_item_date">
-                                    <h3>15</h3>
-                                    <p>Jan</p>
-                                </a>
-                            </div>
-
-                            <div class="blog_details">
-                                <a class="d-inline-block" href="single-blog.html">
-                                    <h2>Google inks pact for new 35-storey office</h2>
-                                </a>
-                                <p>That dominion stars lights dominion divide years for fourth have don't stars is that
-                                    he earth it first without heaven in place seed it second morning saying.</p>
-                                <ul class="blog-info-link">
-                                    <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
-                                    <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
-                                </ul>
-                            </div>
-                        </article>
-
-                        <article class="blog_item">
-                            <div class="blog_item_img">
-                                <img class="card-img rounded-0" src="assets/img/blog/single_blog_5.png" alt="">
-                                <a href="#" class="blog_item_date">
-                                    <h3>15</h3>
-                                    <p>Jan</p>
-                                </a>
-                            </div>
-
-                            <div class="blog_details">
-                                <a class="d-inline-block" href="single-blog.html">
-                                    <h2>Google inks pact for new 35-storey office</h2>
-                                </a>
-                                <p>That dominion stars lights dominion divide years for fourth have don't stars is that
-                                    he earth it first without heaven in place seed it second morning saying.</p>
-                                <ul class="blog-info-link">
-                                    <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
-                                    <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
-                                </ul>
-                            </div>
-                        </article> -->
                         <!--PAGINADOR -->
                         <nav class="blog-pagination justify-content-center d-flex">
                             <ul class="pagination">

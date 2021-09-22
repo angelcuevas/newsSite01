@@ -41,7 +41,10 @@ include("partes/top.php");
 					<div>Noticia en tapa</div>
 				</div>
 				
-
+				<div style="float:left;margin:10px;border:1px solid #f2f2f2;padding:5px;border-radius:5px;">
+					<a href="comentarios.php" ><img src="images/comentarios.png" style="padding:10px;" height="60"/></a>
+					<div>Comentarios</div>
+				</div>
 				
 
 				<div style="float:left;margin:10px;border:1px solid #f2f2f2;padding:5px;border-radius:5px;">
@@ -68,9 +71,9 @@ include("partes/top.php");
 		?>
 		
 		<?php if ((int)$cantidad==0){?>
-			<div class="valid_box">No hay comentarios por revisar.</div>
+			<!-- <div class="valid_box">No hay comentarios por revisar.</div> -->
 		<?php } else {?>
-			<div class="error_box">Tiene <?php echo $cantidad; ?> comentarios por revisar. <a href="comentarios.php?filtro=activa"><i>Revisar Comentarios</i></a></div>
+			<!-- <div class="error_box">Tiene <?php echo $cantidad; ?> comentarios por revisar. <a href="comentarios.php?filtro=activa"><i>Revisar Comentarios</i></a></div> -->
 		<?php }?>
 				
 	

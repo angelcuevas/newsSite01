@@ -18,22 +18,7 @@
                 <!-- Trending Tittle -->
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="trending-tittle">
-                            <strong>Tendencias</strong>
-                            <!-- <p>Rem ipsum dolor sit amet, consectetur adipisicing elit.</p> -->
-                            <div class="trending-animated">
-                                <ul id="js-news" class="js-hidden">
-                                    <?php 
-                                        foreach ($noticiasTapa as $noticia) {
-                                            ?>
-                                                <li class="news-item"><?php echo $noticia["titulo"]; ?></li>
-                                            <?php
-                                        }
-                                    ?>
-                                </ul>
-                            </div>
-                            
-                        </div>
+                        <?php include("siteParts/tendencias.php"); ?>
                     </div>
                 </div>
                 <div class="row">

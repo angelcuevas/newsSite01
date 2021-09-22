@@ -1,13 +1,6 @@
 <?php
 
 $config["sitio"]["host"] = "http://" .$_SERVER["SERVER_NAME"] . "/";
-
-//
-//	$config["db"]["usuario"] = "root";
-//	$config["db"]["pass"] = "";
-//	$config["db"]["host"] = "localhost";
-//	$config["db"]["db_nombre"] = "infra";
-
  
 
 try {

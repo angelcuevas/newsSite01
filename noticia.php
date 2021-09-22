@@ -1,5 +1,7 @@
 <?php
     include("./1nclud3s/Config_y_funciones.php");
+    include("./1nclud3s/new_consultas.php");
+    include("./1nclud3s/utils.php");
     require_once 'clases/Noticia.php';
     require_once 'clases/Multimedia.php';
     require_once 'clases/Comentario.php';
@@ -91,12 +93,12 @@
     <style>
         .circle {
             background: #61EAF9;
-            width: 75px;
-            height: 75px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             text-align: center;
             vertical-align: middle;
-            line-height: 75px; 
+            line-height: 60px; 
             font-size: 2em;
             font-weight: bold;
             font-family: 'helvetica';
@@ -133,18 +135,7 @@
                     <!-- Hot Aimated News Tittle-->
                     <div class="row">
                         <div class="col-lg-12">
-                            <div class="trending-tittle">
-                                <strong>Trending now</strong>
-                                <!-- <p>Rem ipsum dolor sit amet, consectetur adipisicing elit.</p> -->
-                                <div class="trending-animated">
-                                    <ul id="js-news" class="js-hidden">
-                                        <li class="news-item">Bangladesh dolor sit amet, consectetur adipisicing elit.</li>
-                                        <li class="news-item">Spondon IT sit amet, consectetur.......</li>
-                                        <li class="news-item">Rem ipsum dolor sit amet, consectetur adipisicing elit.</li>
-                                    </ul>
-                                </div>
-                                
-                            </div>
+                            <?php include("siteParts/tendencias.php"); ?>
                         </div>
                     </div>
                    <div class="row">
@@ -192,14 +183,17 @@
                                 ?>
                                 
                                 <div class="col-lg-8">
+                                <div>
 
                                 <?php include('./siteParts/comentarios.php'); ?>
+                                </div>
+                                
 
                                     <form class="form-contact contact_form mb-80" action="noticia.php?id=<?php echo $id_noticia; ?>&acc=comentario" method="POST" id="contactForm2" novalidate="novalidate">
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                    <textarea class="form-control w-100 error" name="texto" id="message" cols="30" rows="9" onfocus="this.placeholder = ''" onblur="this.placeholder = '<?php echo $MENSAJE_PLACE_HOLDER; ?>'" placeholder="<?php echo $MENSAJE_PLACE_HOLDER; ?>"></textarea>
+                                                    <textarea class="form-control w-100 error" maxlength="256" name="texto" id="message" cols="30" rows="9" onfocus="this.placeholder = ''" onblur="this.placeholder = '<?php echo $MENSAJE_PLACE_HOLDER; ?>'" placeholder="<?php echo $MENSAJE_PLACE_HOLDER; ?>"></textarea>
                                                 </div>
                                             </div>
                                             <div class="col-sm-12">
