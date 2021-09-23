@@ -1,13 +1,13 @@
 <?php
 
-$config["db"]["usuario"]    = "joker";//prechi_db joker
-$config["db"]["pass"]       = "whysoserious";//twm2GJC_aoX8 whysoserious
-$config["db"]["host"]       = "angelcuevas.ddns.net";
-$config["db"]["db_nombre"]  = "prechi_db";
+$config["db"]["usuario"]    = "catamarcauno_ad";//prechi_db joker
+$config["db"]["pass"]       = "Skywalker2021";//twm2GJC_aoX8 whysoserious
+$config["db"]["host"]       = "catamarcauno.com.ar";
+$config["db"]["db_nombre"]  = "catamarcauno_db";
 
 include_once("db.inc.pdo.php");
 
-$config["url"]["host"]        ="http://" .$_SERVER["SERVER_NAME"]."/aznews";
+$config["url"]["host"]        ="http://" .$_SERVER["SERVER_NAME"].""; //$_SERVER["SERVER_NAME"]
 $config["url"]["urlImagenes"] = $config["url"]["host"]."/multimedia/imagenes/";  //$config["url"]["host"]."/multimedia/imagenes/";
 $config["url"]["urlAudios"]   = $config["url"]["host"]."/multimedia/audios/";
 $config["url"]["urlAdjuntos"] = $config["url"]["host"]."/multimedia/adjuntos/";
