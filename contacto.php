@@ -98,13 +98,16 @@
                 ?>
         <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
 
-    
+
                 <div class="row">
+                    
                     <div class="col-12">
+                        <div id="cartel_exito" class="alert alert-success" style="display: none;">Enviado con éxito</div>
+                        <div id="cartel_error" class="alert alert-danger" style="display: none;">No se pudo enviar el mensaje</div>
                         <h2 class="contact-title">Contactanos</h2>
                     </div>
                     <div class="col-lg-8">
-                        <form class="form-contact contact_form" action="https://technext.github.io/aznews/contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+                        <form class="form-contact contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
@@ -127,6 +130,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <input style="display:none;" name="our_email" id="our_email" type="text" />
                             <div class="form-group mt-3">
                                 <button type="submit" class="button button-contactForm boxed-btn">Enviar</button>
                             </div>

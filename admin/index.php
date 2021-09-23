@@ -56,6 +56,11 @@ include("partes/top.php");
 					<a href="clave.php" ><img src="images/pass.png" style="padding:10px;" height="60"/></a>
 					<div>Cambiar Clave</div>
 				</div>
+
+				<div style="float:left;margin:10px;border:1px solid #f2f2f2;padding:5px;border-radius:5px;">
+					<a href="contacto.php" ><img src="images/1250751.png" style="padding:10px;" height="60"/></a>
+					<div>Información de Contacto</div>
+				</div>
 			
 				<div style="clear:both;">&nbsp;</div>
 			</div>

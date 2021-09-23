@@ -9,7 +9,6 @@ try {
 	
 	// $pdo->exec("set names latin1"); //it could break default charset
 	$pdo->exec("set names utf8"); //it could break default charset
-	echo "<script>console.log('conectado con exito, pa.');</script>";
 } catch (PDOException $e) {
     echo $e->getMessage();
 	exit("<h1>ERROR EN BASE DE DATOS</h1>");

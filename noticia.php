@@ -235,10 +235,11 @@
 
                             </div>
    
- 
 
                             <!-- From -->
                             <div class="row">
+
+
 
                                 <?php 
                                     $NOMBRE_PLACE_HOLDER = "Tu nombre";
@@ -246,13 +247,17 @@
                                 ?>
                                 
                                 <div class="col-lg-8">
-                                <div>
+                                <div id="comentarios_holder">
 
-                                <?php include('./siteParts/comentarios.php'); ?>
+                                    <?php include('./siteParts/comentarios.php'); ?>
                                 </div>
-                                
-
-                                    <form class="form-contact contact_form mb-80" action="noticia.php?id=<?php echo $id_noticia; ?>&acc=comentario" method="POST" id="contactForm2" novalidate="novalidate">
+                                 
+                                <div>
+                                    <div id="cartel_exito" class="alert alert-success" style="display: none;">Guardado con éxito</div>
+                                    <div id="cartel_error" class="alert alert-danger" style="display: none;">No se pudo guardar el mensaje</div>
+                                </div>
+                                <form class="form-contact contact_form mb-80" action="guardar_comentario.php" method="POST" id="comentarioForm" novalidate="novalidate">
+                                    
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="form-group">
@@ -264,6 +269,8 @@
                                                     <input class="form-control error" name="nombre" id="nombre" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = '<?php echo $NOMBRE_PLACE_HOLDER; ?>'" placeholder="<?php echo $NOMBRE_PLACE_HOLDER; ?>">
                                                 </div>
                                             </div>
+
+                                            <input style="display:none;" name="id_noticia" id="nombre" type="text"  value="<?php echo $id_noticia; ?>">
                                             <!-- <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <input class="form-control error" name="email" id="email" type="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" placeholder="Email">
