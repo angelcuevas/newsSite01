@@ -2,13 +2,13 @@
 
 $config["db"]["usuario"]    = "joker";//prechi_db joker
 $config["db"]["pass"]       = "whysoserious";//twm2GJC_aoX8 whysoserious
-$config["db"]["host"]       = "angelcuevas.ddns.net";
+$config["db"]["host"]       = "localhost";
 $config["db"]["db_nombre"]  = "prechi_db";
 
 include_once("db.inc.pdo.php");
 
-$config["url"]["host"]        ="http://" .$_SERVER["SERVER_NAME"];
-$config["url"]["urlImagenes"] = "http://angelcuevas.ddns.net/multimedia/imagenes/";  //$config["url"]["host"]."/multimedia/imagenes/";
+$config["url"]["host"]        ="http://" .$_SERVER["SERVER_NAME"]."/aznews";
+$config["url"]["urlImagenes"] = $config["url"]["host"]."/multimedia/imagenes/";  //$config["url"]["host"]."/multimedia/imagenes/";
 $config["url"]["urlAudios"]   = $config["url"]["host"]."/multimedia/audios/";
 $config["url"]["urlAdjuntos"] = $config["url"]["host"]."/multimedia/adjuntos/";
 $config["url"]["urlNoticia"] = $config["url"]["host"]."/ver_noticia.php?id=";
