@@ -4,9 +4,9 @@ $nombreDelArchivo = basename($_SERVER["PHP_SELF"]);
 
 // /*
 
-$config["db"]["usuario"]    = "catamarcauno_admin";//prechi_db
+$config["db"]["usuario"]    = "catamarcauno_ad";//prechi_db
 $config["db"]["pass"]       = "Skywalker2021";//twm2GJC_aoX8
-$config["db"]["host"]       = "10.0.10.7";
+$config["db"]["host"]       = "catamarcauno.com.ar";
 $config["db"]["db_nombre"]  = "catamarcauno_db";
 
 
